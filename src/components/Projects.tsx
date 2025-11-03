@@ -152,7 +152,7 @@ const Projects = () => {
                   maxHeight: expandedProjects ? `${projectsHeight}px` : "0px"
                 }}
               >
-                <div className="grid grid-cols-1 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {projects.map((project, index) => (
                     <div
                       key={project.title}

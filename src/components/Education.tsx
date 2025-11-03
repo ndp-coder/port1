@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { GraduationCap, Award, BookOpen, ChevronDown } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
@@ -24,28 +25,32 @@ const education = [
 
 const certifications = [
   {
-    title: "Gemini for Data Scientists and Analysts",
+    title: "Gemini for Data Scientists and Analysts by Google Cloud",
     issuer: "Google",
     icon: Award,
-    gradient: "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/17181964"
+    gradient: "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/17181964",
+    link : "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/17181964"
   },
   {
     title: "Machine Learning Operations (MLOps) for Generative AI",
     issuer: "Google",
     icon: Award,
-    gradient: "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/17153853"
+    gradient: "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/17153853",
+    link : "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/17153853"
   },
   {
     title: "Build Real World AI Applications with Gemini and Imagen",
     issuer: "Google",
     icon: Award,
-    gradient: "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/16361436"
+    gradient: "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/16361436",
+    link : "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/16361436"
   },
   {
     title: "Prompt Design in Vertex AI",
     issuer: "Google",
     icon: Award,
-    gradient: "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/16356378"
+    gradient: "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/16356378",
+    link : "https://www.skills.google/public_profiles/bd8e870c-864a-4098-baac-9bb48da9e045/badges/16356378"
   }
 ];
 
@@ -122,7 +127,7 @@ const Education = () => {
                   maxHeight: expandedEducation ? `${educationHeight}px` : "0px"
                 }}
               >
-                <div className="grid grid-cols-1 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {education.map((edu, index) => (
                     <div
                       key={edu.institution}
@@ -228,9 +233,15 @@ const Education = () => {
                           <h4 className="text-lg font-bold mb-2 text-foreground group-hover:text-accent transition-colors">
                             {cert.title}
                           </h4>
-                          <p className="text-sm text-muted-foreground font-medium">
+                          <p className="text-sm text-muted-foreground font-medium mb-4">
                             Issued by {cert.issuer}
                           </p>
+                          <Button
+                            onClick={() => window.open(cert.link, '_blank')}
+                            className="w-full"
+                          >
+                            See the Cert
+                          </Button>
                         </div>
                       </Card>
                     </div>

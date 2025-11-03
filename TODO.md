@@ -1,0 +1,2 @@
+- [x] Import Button from "@/components/ui/button" in Education.tsx
+- [x] Add "See the Cert" Button in each certification card with onClick to redirect to cert.link
