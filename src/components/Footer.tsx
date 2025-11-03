@@ -1,6 +1,13 @@
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Trophy } from "lucide-react";
 
 const Footer = () => {
+  const handleAchievementsClick = () => {
+    const achievementsSection = document.getElementById("achievements");
+    if (achievementsSection) {
+      achievementsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="py-12 px-4 border-t border-border">
       <div className="max-w-7xl mx-auto">
@@ -10,10 +17,18 @@ const Footer = () => {
               © 2025 Naga Durga Prasad Chunduru
             </p>
           </div>
-          
+
           <div className="flex gap-6">
-            <a 
-              href="https://github.com/ndp-coder" 
+            <button
+              onClick={handleAchievementsClick}
+              className="text-muted-foreground hover:text-accent transition-colors"
+              aria-label="Achievements"
+              title="View Achievements"
+            >
+              <Trophy className="h-5 w-5" />
+            </button>
+            <a
+              href="https://github.com/ndp-coder"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -21,8 +36,8 @@ const Footer = () => {
             >
               <Github className="h-5 w-5" />
             </a>
-            <a 
-              href="https://www.linkedin.com/in/naga-durga-prasad/" 
+            <a
+              href="https://www.linkedin.com/in/naga-durga-prasad/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -30,7 +45,7 @@ const Footer = () => {
             >
               <Linkedin className="h-5 w-5" />
             </a>
-            <a 
+            <a
               href="mailto:nagadurga20054@gmail.com"
               className="text-muted-foreground hover:text-accent transition-colors"
               aria-label="Email"
