@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Trophy } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const Hero = () => {
@@ -52,31 +52,38 @@ const Hero = () => {
           </div>
           
           <div className="flex gap-6 justify-center pt-8">
-            <a 
-              href="https://github.com/ndp-coder" 
-              target="_blank" 
+            <a
+              href="https://github.com/ndp-coder"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="GitHub"
             >
               <Github className="h-6 w-6" />
             </a>
-            <a 
-              href="https://www.linkedin.com/in/naga-durga-prasad/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/naga-durga-prasad/"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="h-6 w-6" />
             </a>
-            <a 
+            <a
               href="mailto:nagadurga20054@gmail.com"
               className="text-muted-foreground hover:text-accent transition-colors"
               aria-label="Email"
             >
               <Mail className="h-6 w-6" />
             </a>
+            <button
+              onClick={() => scrollToSection("achievements")}
+              className="text-muted-foreground hover:text-accent transition-colors"
+              aria-label="Achievements"
+            >
+              <Trophy className="h-6 w-6" />
+            </button>
           </div>
         </div>
       </ScrollReveal>

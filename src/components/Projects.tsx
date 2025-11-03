@@ -4,41 +4,6 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, FolderGit2, Clock, ChevronDown, Code2, Server, BarChart3, Zap, ArrowLeft } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
-const projectCategories = [
-  {
-    id: "fullstack",
-    title: "Full Stack Applications",
-    description: "Complete web applications with frontend and backend",
-    icon: Code2,
-    gradient: "from-primary/20 to-accent/20",
-    count: 3
-  },
-  {
-    id: "backend",
-    title: "Backend Projects",
-    description: "Robust backend systems and APIs",
-    icon: Server,
-    gradient: "from-accent/20 to-primary/20",
-    count: 5
-  },
-  {
-    id: "powerbi",
-    title: "Power BI Dashboards",
-    description: "Data visualization and analytics dashboards",
-    icon: BarChart3,
-    gradient: "from-primary/20 to-secondary/40",
-    count: 0
-  },
-  {
-    id: "powerautomate",
-    title: "Power Automate Flows",
-    description: "Automation workflows and integrations",
-    icon: Zap,
-    gradient: "from-secondary/40 to-accent/20",
-    count: 0
-  }
-];
-
 const projectsByCategory = {
   fullstack: [
     {
@@ -103,9 +68,74 @@ const projectsByCategory = {
       github: "https://github.com/ndp-coder/fainance-tracker-go"
     }
   ],
-  powerbi: [],
+  powerbi: [
+    {
+    title: "Bangladeshi Generic Medicine Landscape",
+      description: "Visualized the Bangladeshi generic medicine market using Power BI, highlighting top producers, growth patterns, and international export performance.",
+      tags: ["PowerBi" , "Exel"],
+      gradient: "from-primary/20 to-secondary/40",
+      demo: "https://app.powerbi.com/links/F5N0_wCAjf?ctid=6ae3d026-e965-483e-8309-8f8f3aca71c8&pbi_source=linkShare"
+    },
+    {
+    title: "Diabetes Prediction System",
+    description:"Built an interactive Power BI dashboard to analyze diabetes risk patterns, highlighting correlations between health indicators and prediction accuracy.",
+      tags: ["PowerBi" , "Exel"],
+      gradient: "from-primary/20 to-secondary/40",
+      demo: "https://app.powerbi.com/links/c-6kB9vFnb?ctid=6ae3d026-e965-483e-8309-8f8f3aca71c8&pbi_source=linkShare"
+    },
+    {
+    title: "E commerce Sales Dashboard",
+    description:"Designed a Power BI dashboard providing real-time insights into e-commerce sales, profit margins, and regional customer analytics.",
+      tags: ["PowerBi" , "Exel"],
+      gradient: "from-primary/20 to-secondary/40",
+      demo: "https://app.powerbi.com/links/FVhNmojY_A?ctid=6ae3d026-e965-483e-8309-8f8f3aca71c8&pbi_source=linkShare"
+    },
+    {
+    title: "Gaming Mouse Space Dashboard",
+    description:"Built a Power BI dashboard visualizing the gaming mouse market landscape, highlighting top brands, price segmentation, and consumer demand trends.",
+      tags: ["PowerBi" , "Exel"],
+      gradient: "from-primary/20 to-secondary/40",
+      demo: "https://app.powerbi.com/links/6L6Jj3zI7k?ctid=6ae3d026-e965-483e-8309-8f8f3aca71c8&pbi_source=linkShare"
+    }
+
+  ],
   powerautomate: []
 };
+
+const projectCategories = [
+  {
+    id: "fullstack",
+    title: "Full Stack Applications",
+    description: "Complete web applications with frontend and backend",
+    icon: Code2,
+    gradient: "from-primary/20 to-accent/20",
+    count: projectsByCategory.fullstack.length
+  },
+  {
+    id: "backend",
+    title: "Backend Projects",
+    description: "Robust backend systems and APIs",
+    icon: Server,
+    gradient: "from-accent/20 to-primary/20",
+    count: projectsByCategory.backend.length
+  },
+  {
+    id: "powerbi",
+    title: "Power BI Dashboards",
+    description: "Data visualization and analytics dashboards",
+    icon: BarChart3,
+    gradient: "from-primary/20 to-secondary/40",
+    count: projectsByCategory.powerbi.length
+  },
+  {
+    id: "powerautomate",
+    title: "Power Automate Flows",
+    description: "Automation workflows and integrations",
+    icon: Zap,
+    gradient: "from-secondary/40 to-accent/20",
+    count: projectsByCategory.powerautomate.length
+  }
+];
 
 const upcomingProjects = [
   {
@@ -316,15 +346,17 @@ const Projects = () => {
                             </div>
 
                             <div className="flex gap-3">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="border-primary/50 hover:bg-primary/10"
-                                onClick={() => window.open(project.github, "_blank")}
-                              >
-                                <Github className="h-4 w-4 mr-2" />
-                                Code
-                              </Button>
+                              {selectedCategory !== 'powerbi' && project.github && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="border-primary/50 hover:bg-primary/10"
+                                  onClick={() => window.open(project.github, "_blank")}
+                                >
+                                  <Github className="h-4 w-4 mr-2" />
+                                  Code
+                                </Button>
+                              )}
                               {project.demo && (
                                 <Button
                                   variant="outline"

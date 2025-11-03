@@ -263,6 +263,19 @@ const Achievements = () => {
                               </div>
                             </div>
                           </div>
+
+                          {achievement.category === "LeetCode" && (
+                            <div className="mt-6 text-center">
+                              <a
+                                href="https://leetcode.com/u/UrwNYMyyyh/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
+                              >
+                                See My Profile
+                              </a>
+                            </div>
+                          )}
                         </Card>
                       </div>
                     ))}
