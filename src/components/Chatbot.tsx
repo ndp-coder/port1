@@ -15,7 +15,7 @@ import { GoogleGenerativeAI, ChatSession } from "@google/generative-ai";
 //
 // --- SET YOUR FILENAME HERE ---
 //
-const HARDCODED_TXT_URL = "/my-data.txt"; // Make sure this file is in /public/my-data.txt
+const HARDCODED_TXT_URL = "public/my-data.txt"; // Make sure this file is in /public/my-data.txt
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
