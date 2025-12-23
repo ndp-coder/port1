@@ -7,6 +7,7 @@ import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
+import Chatbot from "@/components/Chatbot";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <Achievements />
       <Contact />
       <Footer />
+      <Chatbot />
     </div>
   );
 };

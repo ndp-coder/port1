@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, FolderGit2, Clock, ChevronDown, Code2, Server, BarChart3, Zap, ArrowLeft } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ExternalLink, Github, FolderGit2, Clock, ChevronDown, Code2, Server, BarChart3, Zap, ArrowLeft, Play } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const projectsByCategory = {
@@ -99,7 +100,36 @@ const projectsByCategory = {
     }
 
   ],
-  powerautomate: []
+  powerautomate: [
+    {
+      title: "Smart Leave Management & Approval System",
+      description: "Designed and implemented a Power Automate flow that streamlines form responses by creating SharePoint items, sending conditional email alerts, and managing approval requests based on response criteria.The workflow dynamically handles different logic paths for health issues, response timing, and approval outcomes — improving efficiency and reducing manual follow-ups.",
+      tags: ["Power Automate", "SharePoint", "Outlook", "Workflow"],
+      gradient: "from-secondary/40 to-accent/20",
+      video: "https://ik.imagekit.io/2lyb4ozyz/pac%20flow-%20smart%20levave%20recording.mp4?updatedAt=1762152058910"
+    },
+    {
+      title: "Feedback Aggregator for Employee Events",
+      description: "Automated Response Logging & Email Notification System Developed a Power Automate workflow that captures Microsoft Form responses in real time, retrieves the submission details, and automatically logs them into an Excel table for record-keeping. The flow uses conditional logic to evaluate responses and trigger automated email alerts only when specific criteria are met. This streamlined manual reporting, improved response tracking, and ensured faster communication across teams.",
+      tags: ["Power Automate", "Teams", "SharePoint", "Approvals"],
+      gradient: "from-secondary/40 to-accent/20",
+      video: "https://ik.imagekit.io/2lyb4ozyz/Screenshot%202025-11-03%20121514.png?updatedAt=1762152354423"
+    },
+    {
+      title: "Welcoming Employee",
+      description: "Built a Power Automate workflow that automatically sends personalized welcome emails to newly onboarded employees once their details are added to the system. The flow integrates with SharePoint and Outlook to fetch employee information, compose tailored messages, and ensure every new hire receives a warm, consistent introduction. This automation enhances onboarding experience, saves HR time, and maintains professional communication standards.",
+      tags: ["Power Automate", "Excel", "SQL", "Azure"],
+      gradient: "from-secondary/40 to-accent/20",
+      video: "https://ik.imagekit.io/2lyb4ozyz/Screenshot%202025-11-03%20122411.png?updatedAt=1762152884225"
+    },
+    {
+      title: "Checking weather new empolyees are onboarded or not",
+      description: "Created a Power Automate workflow to automatically verify whether new employees have been successfully onboarded. The flow pulls data from connected systems, checks onboarding status against HR records, and triggers email notifications or updates in SharePoint when pending actions are detected. This automation eliminates manual follow-ups, ensures timely onboarding, and keeps HR teams informed in real time.",
+      tags: ["Power Automate", "Forms", "AI Builder", "Dynamics 365"],
+      gradient: "from-secondary/40 to-accent/20",
+      video: "https://ik.imagekit.io/2lyb4ozyz/Screenshot%202025-11-03%20134535.png?updatedAt=1762157755991"
+    }
+  ]
 };
 
 const projectCategories = [
@@ -151,6 +181,8 @@ const Projects = () => {
   const [expandedProjects, setExpandedProjects] = useState(false);
   const [expandedUpcoming, setExpandedUpcoming] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [categoriesHeight, setCategoriesHeight] = useState(0);
   const [projectsHeight, setProjectsHeight] = useState(0);
   const [upcomingHeight, setUpcomingHeight] = useState(0);
@@ -346,27 +378,90 @@ const Projects = () => {
                             </div>
 
                             <div className="flex gap-3">
-                              {selectedCategory !== 'powerbi' && project.github && (
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="border-primary/50 hover:bg-primary/10"
-                                  onClick={() => window.open(project.github, "_blank")}
-                                >
-                                  <Github className="h-4 w-4 mr-2" />
-                                  Code
-                                </Button>
-                              )}
-                              {project.demo && (
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="border-accent/50 hover:bg-accent/10"
-                                  onClick={() => window.open(project.demo, "_blank")}
-                                >
-                                  <ExternalLink className="h-4 w-4 mr-2" />
-                                  Demo
-                                </Button>
+                              {selectedCategory === 'powerautomate' ? (
+                                <Dialog>
+                                  <DialogTrigger asChild>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="border-accent/50 hover:bg-accent/10"
+                                      onClick={() => {
+                                        setSelectedProject(project);
+                                        setIsModalOpen(true);
+                                      }}
+                                    >
+                                      <Play className="h-4 w-4 mr-2" />
+                                      View Details
+                                    </Button>
+                                  </DialogTrigger>
+                                  <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                                    <DialogHeader>
+                                      <DialogTitle className="text-2xl font-bold">{selectedProject?.title}</DialogTitle>
+                                    </DialogHeader>
+                                    <div className="space-y-6">
+                                      <div className={`h-2 w-full rounded-t-lg bg-gradient-to-r ${selectedProject?.gradient}`} />
+                                      <p className="text-muted-foreground leading-relaxed">
+                                        {selectedProject?.description}
+                                      </p>
+                                      <div className="flex flex-wrap gap-2">
+                                        {selectedProject?.tags.map((tag: string) => (
+                                          <span
+                                            key={tag}
+                                            className="text-xs px-3 py-1 bg-secondary border border-border rounded-full text-muted-foreground"
+                                          >
+                                            {tag}
+                                          </span>
+                                        ))}
+                                      </div>
+                                      {selectedProject?.video && (
+                                        <div className="w-full">
+                                          {selectedProject.title === "Feedback Aggregator for Employee Events" ||
+                                           selectedProject.title === "Data Synchronization Flow" ||
+                                           selectedProject.title === "Customer Feedback Automation" ? (
+                                            <img
+                                              src={selectedProject.video}
+                                              alt={selectedProject.title}
+                                              className="w-full rounded-lg"
+                                            />
+                                          ) : (
+                                            <video
+                                              controls
+                                              className="w-full rounded-lg"
+                                              src={selectedProject.video}
+                                            >
+                                              Your browser does not support the video tag.
+                                            </video>
+                                          )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </DialogContent>
+                                </Dialog>
+                              ) : (
+                                <>
+                                  {selectedCategory !== 'powerbi' && project.github && (
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="border-primary/50 hover:bg-primary/10"
+                                      onClick={() => window.open(project.github, "_blank")}
+                                    >
+                                      <Github className="h-4 w-4 mr-2" />
+                                      Code
+                                    </Button>
+                                  )}
+                                  {project.demo && (
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="border-accent/50 hover:bg-accent/10"
+                                      onClick={() => window.open(project.demo, "_blank")}
+                                    >
+                                      <ExternalLink className="h-4 w-4 mr-2" />
+                                      Demo
+                                    </Button>
+                                  )}
+                                </>
                               )}
                             </div>
                           </Card>
